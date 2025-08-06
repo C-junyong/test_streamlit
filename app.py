@@ -20,14 +20,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ✅ 한글 폰트 설정
-if platform.system() == 'Windows':
-    plt.rcParams['font.family'] = 'Malgun Gothic'
-elif platform.system() == 'Darwin':
-    plt.rcParams['font.family'] = 'AppleGothic'
-else:
-    plt.rcParams['font.family'] = 'NanumGothic'
-
+# Streamlit Cloud에서는 NanumGothic으로 고정 (리눅스 서버에 있음)
+plt.rcParams['font.family'] = 'NanumGothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # ✅ Streamlit 앱 시작
