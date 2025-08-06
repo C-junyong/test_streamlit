@@ -1,11 +1,23 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
+import urllib.request
+import os
 
-# 한글 폰트 설정 (Streamlit Cloud 호환)
-plt.rcParams['font.family'] = 'NanumGothic'
-plt.rcParams['axes.unicode_minus'] = False
+# ✅ 1. 폰트 GitHub에서 직접 다운로드 (캐시로 저장)
+font_url = "https://github.com/naver/nanumfont/blob/master/ttf/NanumGothic.ttf?raw=true"
+font_path = "NanumGothic.ttf"
 
+if not os.path.exists(font_path):
+    urllib.request.urlretrieve(font_url, font_path)
+
+# ✅ 2. matplotlib에 한글 폰트 적용
+font_name = font_manager.FontProperties(fname=font_path).get_name()
+plt.rcParams["font.family"] = font_name
+plt.rcParams["axes.unicode_minus"] = False
+
+# ✅ 3. Streamlit 앱 구성
 st.title("📊 학생 점수 분석 앱")
 
 df = pd.DataFrame({
